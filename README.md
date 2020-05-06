@@ -1,2 +1,2 @@
 # SkullCollectors
-Colletors plugin developed privately for SkullRaids.
+Colletors plugin developed privately for SkullWars.
