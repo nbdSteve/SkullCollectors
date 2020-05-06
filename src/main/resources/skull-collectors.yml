@@ -1,0 +1,85 @@
+allowed-worlds:
+  - world
+
+mob-drops:
+  capacity: 100
+  items:
+    - sulphur
+
+crop-drops:
+  capacity: 100
+  items:
+  - sugar_cane
+
+collector:
+  name: '&c&lSKULL COLLECTOR'
+  material: beacon
+  data: 0
+  lore:
+    - ''
+    - '&7&oPlace this in a chunk to receive loot.'
+    - ''
+  enchantments:
+    - lure:1
+  item-flags:
+    - hide_enchants
+
+gui:
+  name: '&5&lCollector'
+  type: hopper
+  size: 5
+  1:
+    slot: 0
+    action: sell-mob
+    name: '&e&lMOB DROPS'
+    material: sulphur
+    data: 0
+    lore:
+      - ''
+      - '&7&oLeft click to sell mob drops.'
+      - ''
+      - '&5Collected&f| &d&l{mob-drops}&7/&d&l100'
+    enchantments:
+    item-flags:
+      - hide_attributes
+  2:
+    slot: 1
+    action: deposit-tnt
+    name: '&e&lDEPOSIT TNT'
+    material: tnt
+    data: 0
+    lore:
+      - ''
+      - '&7&oLeft click to deposit all of the TNT in'
+      - '&7&oyour inventory to your factions TNT bank.'
+      - ''
+    enchantments:
+    item-flags:
+      - hide_attributes
+  3:
+    slot: 2
+    action: sell-crop
+    name: '&e&lCROP DROPS'
+    material: wheat
+    data: 0
+    lore:
+      - ''
+      - '&7&oLeft click to sell mob drops.'
+      - ''
+      - '&5Collected&f| &d&l{crop-drops}&7/&d&l100'
+    enchantments:
+    item-flags:
+      - hide_attributes
+  4:
+    slot: 4
+    action: close
+    name: '&c&lExit'
+    material: barrier
+    data: 0
+    lore:
+      - '&7'
+      - '&7&o((left click to close this gui))'
+      - '&7'
+    enchantments:
+    item-flags:
+      - hide_attributes
