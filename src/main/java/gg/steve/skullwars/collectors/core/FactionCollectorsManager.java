@@ -111,7 +111,6 @@ public class FactionCollectorsManager {
             }
         }
         for (Material sold : soldItems) {
-            LogUtil.info("removing item: " + sold.name());
             this.collectorContents.remove(sold);
         }
         return (SkullCollectors.getNumberFormat().format(deposit) + ":" + SkullCollectors.getNumberFormat().format(itemsSold)).split(":");

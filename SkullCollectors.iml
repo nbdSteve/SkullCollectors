@@ -39,8 +39,6 @@
     <orderEntry type="library" name="Maven: com.github.SaberLLC:Saber-Factions:2.3.3-STABLE" level="project" />
     <orderEntry type="library" name="Maven: com.github.brcdev-minecraft:shopgui-api:1.2.0" level="project" />
     <orderEntry type="library" name="Maven: org.spigotmc:spigot-api:1.15.2-R0.1-SNAPSHOT" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: com.github.MilkBowl:VaultAPI:1.7" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: org.bukkit:bukkit:1.13.1-R0.1-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: com.github.shynixn.headdatabase:hdb-api:1.0" level="project" />
   </component>
 </module>

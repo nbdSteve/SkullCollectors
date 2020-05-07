@@ -1,6 +1,13 @@
 allowed-worlds:
   - world
 
+spawns-per-minute: 3
+
+do-vanilla-drops: true
+
+enabled-spawn-types:
+  - blaze
+
 mob-drops:
   capacity: 100
   items:
@@ -13,7 +20,7 @@ crop-drops:
 
 collector:
   name: '&c&lSKULL COLLECTOR'
-  material: beacon
+  material: flower_pot_item
   data: 0
   lore:
     - ''
@@ -27,9 +34,9 @@ collector:
 gui:
   name: "&5&l{faction}'s Collectors"
   type: none
-  size: 9
+  size: 27
   1:
-    slot: 0
+    slot: 11
     action: sell-mob
     name: '&e&lMOB DROPS'
     material: hdb-8210
@@ -43,7 +50,7 @@ gui:
     item-flags:
       - hide_attributes
   2:
-    slot: 1
+    slot: 12
     action: deposit-tnt
     name: '&e&lDEPOSIT TNT'
     material: hdb-229
@@ -58,7 +65,7 @@ gui:
     item-flags:
       - hide_attributes
   3:
-    slot: 2
+    slot: 13
     action: sell-crop
     name: '&e&lCROP DROPS'
     material: hdb-6
@@ -72,7 +79,7 @@ gui:
     item-flags:
       - hide_attributes
   4:
-    slot: 7
+    slot: 16
     action: none
     name: '&e&lCollector Stats'
     material: hdb-17965
@@ -87,7 +94,7 @@ gui:
     item-flags:
       - hide_attributes
   5:
-    slot: 8
+    slot: 17
     action: close
     name: '&c&lExit'
     material: barrier
@@ -96,6 +103,248 @@ gui:
       - '&7'
       - '&7&o((left click to close this gui))'
       - '&7'
+    enchantments:
+    item-flags:
+      - hide_attributes
+  6:
+    slot: 0
+    action: none
+    name: ''
+    material: stained_glass_pane
+    data: 7
+    lore:
+      - ''
+    enchantments:
+    item-flags:
+      - hide_attributes
+  7:
+    slot: 1
+    action: none
+    name: ''
+    material: stained_glass_pane
+    data: 7
+    lore:
+      - ''
+    enchantments:
+    item-flags:
+      - hide_attributes
+  8:
+    slot: 2
+    action: none
+    name: ''
+    material: stained_glass_pane
+    data: 7
+    lore:
+      - ''
+    enchantments:
+    item-flags:
+      - hide_attributes
+  9:
+    slot: 3
+    action: none
+    name: ''
+    material: stained_glass_pane
+    data: 7
+    lore:
+      - ''
+    enchantments:
+    item-flags:
+      - hide_attributes
+  10:
+    slot: 4
+    action: none
+    name: ''
+    material: stained_glass_pane
+    data: 7
+    lore:
+      - ''
+    enchantments:
+    item-flags:
+      - hide_attributes
+  11:
+    slot: 5
+    action: none
+    name: ''
+    material: stained_glass_pane
+    data: 7
+    lore:
+      - ''
+    enchantments:
+    item-flags:
+      - hide_attributes
+  12:
+    slot: 6
+    action: none
+    name: ''
+    material: stained_glass_pane
+    data: 7
+    lore:
+      - ''
+    enchantments:
+    item-flags:
+      - hide_attributes
+  13:
+    slot: 7
+    action: none
+    name: ''
+    material: stained_glass_pane
+    data: 7
+    lore:
+      - ''
+    enchantments:
+    item-flags:
+      - hide_attributes
+  14:
+    slot: 8
+    action: none
+    name: ''
+    material: stained_glass_pane
+    data: 7
+    lore:
+      - ''
+    enchantments:
+    item-flags:
+      - hide_attributes
+  15:
+    slot: 9
+    action: none
+    name: ''
+    material: stained_glass_pane
+    data: 7
+    lore:
+      - ''
+    enchantments:
+    item-flags:
+      - hide_attributes
+  16:
+    slot: 10
+    action: none
+    name: ''
+    material: stained_glass_pane
+    data: 7
+    lore:
+      - ''
+    enchantments:
+    item-flags:
+      - hide_attributes
+  17:
+    slot: 14
+    action: none
+    name: ''
+    material: stained_glass_pane
+    data: 7
+    lore:
+      - ''
+    enchantments:
+    item-flags:
+      - hide_attributes
+  18:
+    slot: 15
+    action: none
+    name: ''
+    material: stained_glass_pane
+    data: 7
+    lore:
+      - ''
+    enchantments:
+    item-flags:
+      - hide_attributes
+  19:
+    slot: 18
+    action: none
+    name: ''
+    material: stained_glass_pane
+    data: 7
+    lore:
+      - ''
+    enchantments:
+    item-flags:
+      - hide_attributes
+  20:
+    slot: 19
+    action: none
+    name: ''
+    material: stained_glass_pane
+    data: 7
+    lore:
+      - ''
+    enchantments:
+    item-flags:
+      - hide_attributes
+  21:
+    slot: 20
+    action: none
+    name: ''
+    material: stained_glass_pane
+    data: 7
+    lore:
+      - ''
+    enchantments:
+    item-flags:
+      - hide_attributes
+  22:
+    slot: 21
+    action: none
+    name: ''
+    material: stained_glass_pane
+    data: 7
+    lore:
+      - ''
+    enchantments:
+    item-flags:
+      - hide_attributes
+  23:
+    slot: 22
+    action: none
+    name: ''
+    material: stained_glass_pane
+    data: 7
+    lore:
+      - ''
+    enchantments:
+    item-flags:
+      - hide_attributes
+  24:
+    slot: 23
+    action: none
+    name: ''
+    material: stained_glass_pane
+    data: 7
+    lore:
+      - ''
+    enchantments:
+    item-flags:
+      - hide_attributes
+  25:
+    slot: 24
+    action: none
+    name: ''
+    material: stained_glass_pane
+    data: 7
+    lore:
+      - ''
+    enchantments:
+    item-flags:
+      - hide_attributes
+  26:
+    slot: 25
+    action: none
+    name: ''
+    material: stained_glass_pane
+    data: 7
+    lore:
+      - ''
+    enchantments:
+    item-flags:
+      - hide_attributes
+  27:
+    slot: 26
+    action: none
+    name: ''
+    material: stained_glass_pane
+    data: 7
+    lore:
+      - ''
     enchantments:
     item-flags:
       - hide_attributes

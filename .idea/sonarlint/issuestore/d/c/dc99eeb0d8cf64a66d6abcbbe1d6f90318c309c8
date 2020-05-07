@@ -1,9 +1,9 @@
 
 W
-java:S1874"5Remove this use of "getItemInHand"; it is deprecated.(Õ¯˜Ôøÿÿÿÿ8ËïÊÑ.
+java:S1874"5Remove this use of "getItemInHand"; it is deprecated.(Šü˜úÿÿÿÿ8ªĞÊÑ.
 G
-java:S5411"*Use the primitive boolean expression here.(ê€œ8ÃÏ.
+java:S5411"*Use the primitive boolean expression here.(ê€œ8ÃÏ.
 W
-java:S1874"5Remove this use of "getItemInHand"; it is deprecated.(Šü˜úÿÿÿÿ8ªĞÊÑ.
+java:S1874"5Remove this use of "getItemInHand"; it is deprecated.(Õ¯˜Ôøÿÿÿÿ8ËïÊÑ.
 O
-java:S1874?"3Remove this use of "isCancelled"; it is deprecated.(˜’ãw8âÀÛç.
+java:S1874E"3Remove this use of "isCancelled"; it is deprecated.(˜’ãw8âÀÛç.

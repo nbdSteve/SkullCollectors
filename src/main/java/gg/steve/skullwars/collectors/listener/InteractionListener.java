@@ -1,19 +1,26 @@
 package gg.steve.skullwars.collectors.listener;
 
+import com.destroystokyo.paper.event.block.BlockDestroyEvent;
 import com.massivecraft.factions.Board;
 import com.massivecraft.factions.FLocation;
 import com.massivecraft.factions.FPlayer;
 import com.massivecraft.factions.FPlayers;
 import gg.steve.skullwars.collectors.core.Collector;
 import gg.steve.skullwars.collectors.core.CollectorManager;
+import gg.steve.skullwars.collectors.managers.Files;
 import gg.steve.skullwars.collectors.message.MessageType;
 import gg.steve.skullwars.collectors.nbt.NBTItem;
+import gg.steve.skullwars.collectors.utils.LogUtil;
 import org.bukkit.Chunk;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.*;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityExplodeEvent;
+import org.bukkit.event.entity.ExplosionPrimeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 public class InteractionListener implements Listener {
@@ -38,6 +45,11 @@ public class InteractionListener implements Listener {
         Chunk chunk = event.getPlayer().getWorld().getChunkAt(event.getBlock().getLocation());
         if (CollectorManager.isCollectorActive(chunk)) {
             MessageType.COLLECTOR_ACTIVE.message(event.getPlayer());
+            event.setCancelled(true);
+            return;
+        }
+        if (!Files.isAllowedWorld(chunk.getWorld())) {
+
             event.setCancelled(true);
             return;
         }
@@ -72,17 +84,18 @@ public class InteractionListener implements Listener {
         collector.getManager().openFCollectorGui(event.getPlayer());
     }
 
-    @EventHandler
-    public void collectorExplode(BlockExplodeEvent event) {
-        if (event.isCancelled()) return;
-        Chunk chunk = event.getBlock().getChunk();
-        if (!CollectorManager.isCollectorActive(chunk)) return;
-        Collector collector = CollectorManager.getCollector(chunk);
-        if (!event.getBlock().equals(collector.getCollectorLocation().getBlock())) return;
-        event.setCancelled(true);
-        CollectorManager.removeCollector(collector);
-        event.getBlock().setType(Material.AIR);
-        event.getBlock().getWorld().dropItem(event.getBlock().getLocation(), CollectorManager.getCollectorItem());
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void collectorExplode(EntityExplodeEvent event) {
+        for (Block block : event.blockList()) {
+            Chunk chunk = block.getChunk();
+            if (!CollectorManager.isCollectorActive(chunk)) return;
+            Collector collector = CollectorManager.getCollector(chunk);
+            if (!block.equals(collector.getCollectorLocation().getBlock())) return;
+            CollectorManager.removeCollector(collector);
+            block.getDrops().clear();
+            block.setType(Material.AIR);
+            block.getWorld().dropItem(block.getLocation(), CollectorManager.getCollectorItem());
+        }
     }
 
     @EventHandler

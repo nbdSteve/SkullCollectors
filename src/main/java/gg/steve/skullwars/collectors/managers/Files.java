@@ -1,6 +1,8 @@
 package gg.steve.skullwars.collectors.managers;
 
+import org.bukkit.World;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.EntityType;
 
 import java.io.File;
 
@@ -32,5 +34,21 @@ public enum Files {
 
     public static void reload() {
         FileManager.reload();
+    }
+
+    public static boolean isAllowedWorld(World world) {
+        return CONFIG.get().getStringList("allowed-worlds").contains(world.getName());
+    }
+
+    public static int getSpawnsPerMinute() {
+        return CONFIG.get().getInt("spawns-per-minute");
+    }
+
+    public static boolean doSpawn(EntityType type) {
+        return CONFIG.get().getStringList("enabled-spawn-types").contains(type.toString().toLowerCase());
+    }
+
+    public static boolean doVanillaDrops() {
+        return CONFIG.get().getBoolean("do-vanilla-drops");
     }
 }
