@@ -57,3 +57,15 @@ p
 @src/main/java/gg/steve/skullwars/collectors/gui/AbstractGui.java,b\4\b46b9bc95f7d95d7547f509e1977c5bdeb177c35
 }
 Msrc/main/java/gg/steve/skullwars/collectors/listener/InteractionListener.java,d\c\dc99eeb0d8cf64a66d6abcbbe1d6f90318c309c8
+É
+Ssrc/main/java/gg/steve/skullwars/collectors/integration/ShopGUIPlusIntegration.java,5\5\55ccc111d0b93634bdd84b492ecbcfdebf3484f4
+Å
+Qsrc/main/java/gg/steve/skullwars/collectors/integration/FactionsIntergration.java,b\b\bb07f4a95b1c747cfb9f4f6c56d3954872d0f578
+p
+@src/main/java/gg/steve/skullwars/collectors/cmd/sub/HelpCmd.java,5\1\519916301e6aa044f4753bc27d09cd0132ea4ad6
+r
+Bsrc/main/java/gg/steve/skullwars/collectors/cmd/sub/ReloadCmd.java,7\4\7409bf681516af62637b8006019dccdc2af3b3b3
+z
+Jsrc/main/java/gg/steve/skullwars/collectors/permission/PermissionNode.java,2\2\22588ae66ed291ff9fa2a0ac4d6eeeef703b37a6
+p
+@src/main/java/gg/steve/skullwars/collectors/cmd/sub/GiveCmd.java,f\1\f12dda3f20e46d3cf988549a696c58ef0ad95817

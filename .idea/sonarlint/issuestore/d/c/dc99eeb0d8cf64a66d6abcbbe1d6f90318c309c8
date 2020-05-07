@@ -1,18 +1,9 @@
 
 W
-java:S1874"5Remove this use of "getItemInHand"; it is deprecated.(Õ¯˜Ôøÿÿÿÿ8ËïÊÑ.
+java:S1874"5Remove this use of "getItemInHand"; it is deprecated.(Õ¯˜Ôøÿÿÿÿ8ËïÊÑ.
 G
-java:S5411"*Use the primitive boolean expression here.(ê€œ8ÃÏ.
-R
-java:S1874"5Remove this use of "getItemInHand"; it is deprecated.(˜—ê8¹¤ÊÑ.
-e
-java:S1128"HRemove this unused import 'org.bukkit.event.player.PlayerInteractEvent'.(Òêé¯8÷ıÇÑ.
-R
-java:S1874"5Remove this use of "getItemInHand"; it is deprecated.(˜—ê8ªĞÊÑ.
-U
-java:S2589"8Remove this expression which always evaluates to "false"(˜—ê8¹¤ÊÑ.
-\
-java:S1128":Remove this unused import 'org.bukkit.event.block.Action'.(Ì«ÑÂùÿÿÿÿ8øÈÑ.
-j
-java:S1128
-"HRemove this unused import 'gg.steve.skullwars.collectors.utils.LogUtil'.(©«íçıÿÿÿÿ8¶ôĞÑ.
+java:S5411"*Use the primitive boolean expression here.(ê€œ8ÃÏ.
+W
+java:S1874"5Remove this use of "getItemInHand"; it is deprecated.(Šü˜úÿÿÿÿ8ªĞÊÑ.
+O
+java:S1874?"3Remove this use of "isCancelled"; it is deprecated.(˜’ãw8âÀÛç.
