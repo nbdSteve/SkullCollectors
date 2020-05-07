@@ -9,13 +9,11 @@ import java.util.Arrays;
 import java.util.List;
 
 public enum CommandDebug {
-    GUI_CONFIGURATION_ERROR("gui-configuration-error"),
     INSUFFICIENT_PERMISSION("insufficient-permission", "{node}"),
     INVALID_AMOUNT("invalid-amount"),
     INVALID_NUMBER_OF_ARGUMENTS("invalid-number-of-arguments"),
     INVALID_COMMAND("invalid-command"),
-    TARGET_NOT_ONLINE("target-not-online"),
-    ONLY_PLAYERS_ACCESSIBLE("only-player-accessible");
+    TARGET_NOT_ONLINE("target-not-online");
 
     private final String path;
     private List<String> placeholders;

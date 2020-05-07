@@ -25,14 +25,14 @@ collector:
     - hide_enchants
 
 gui:
-  name: '&5&lCollector'
-  type: hopper
-  size: 5
+  name: "&5&l{faction}'s Collectors"
+  type: none
+  size: 9
   1:
     slot: 0
     action: sell-mob
     name: '&e&lMOB DROPS'
-    material: sulphur
+    material: hdb-8210
     data: 0
     lore:
       - ''
@@ -46,13 +46,14 @@ gui:
     slot: 1
     action: deposit-tnt
     name: '&e&lDEPOSIT TNT'
-    material: tnt
+    material: hdb-229
     data: 0
     lore:
       - ''
       - '&7&oLeft click to deposit all of the TNT in'
       - '&7&oyour inventory to your factions TNT bank.'
       - ''
+      - '&5Banked&f| &d&l{tnt-banked}&7/&d&l{max-tnt}'
     enchantments:
     item-flags:
       - hide_attributes
@@ -60,7 +61,7 @@ gui:
     slot: 2
     action: sell-crop
     name: '&e&lCROP DROPS'
-    material: wheat
+    material: hdb-6
     data: 0
     lore:
       - ''
@@ -71,7 +72,22 @@ gui:
     item-flags:
       - hide_attributes
   4:
-    slot: 4
+    slot: 7
+    action: none
+    name: '&e&lCollector Stats'
+    material: hdb-17965
+    data: 0
+    lore:
+      - '&7'
+      - '&5Active Collectors&f| &d&l{collector-count}'
+      - '&5Current Collected Items&f| &d&l{collected-count}'
+      - '&5Lifetime Collected Items&f| &d&l{lifetime-count}'
+      - '&7'
+    enchantments:
+    item-flags:
+      - hide_attributes
+  5:
+    slot: 8
     action: close
     name: '&c&lExit'
     material: barrier

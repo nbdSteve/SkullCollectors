@@ -1,12 +1,12 @@
 package gg.steve.skullwars.collectors.cmd;
 
-import com.massivecraft.factions.FPlayer;
-import com.massivecraft.factions.FPlayers;
-import gg.steve.skullwars.collectors.core.CollectorManager;
+import gg.steve.skullwars.collectors.cmd.sub.GiveCmd;
+import gg.steve.skullwars.collectors.cmd.sub.HelpCmd;
+import gg.steve.skullwars.collectors.cmd.sub.ReloadCmd;
+import gg.steve.skullwars.collectors.message.CommandDebug;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 public class CollectorCmd implements CommandExecutor {
@@ -14,11 +14,25 @@ public class CollectorCmd implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (command.getName().equalsIgnoreCase("collector")) {
             if (args.length == 0) {
-                Player player = (Player) sender;
-                player.getInventory().addItem(CollectorManager.getCollectorItem());
-            } else {
-                FPlayer fPlayer = FPlayers.getInstance().getByPlayer((Player) sender);
-                CollectorManager.getFactionCollectorManager(fPlayer.getFactionId()).openFCollectorGui((Player) sender);
+                HelpCmd.help(sender);
+                return true;
+            }
+            switch (args[0]) {
+                case "help":
+                case "h":
+                    HelpCmd.help(sender);
+                    break;
+                case "reload":
+                case "r":
+                    ReloadCmd.reload(sender);
+                    break;
+                case "give":
+                case "g":
+                    GiveCmd.give(sender, args);
+                    break;
+                default:
+                    CommandDebug.INVALID_COMMAND.message(sender);
+                    break;
             }
         }
         return true;

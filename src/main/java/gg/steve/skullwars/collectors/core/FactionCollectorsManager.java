@@ -1,6 +1,12 @@
 package gg.steve.skullwars.collectors.core;
 
+import com.massivecraft.factions.FPlayers;
+import com.massivecraft.factions.Faction;
+import com.massivecraft.factions.Factions;
+import com.massivecraft.factions.integration.Econ;
+import gg.steve.skullwars.collectors.SkullCollectors;
 import gg.steve.skullwars.collectors.gui.FCollectorGui;
+import gg.steve.skullwars.collectors.integration.ShopGUIPlusIntegration;
 import gg.steve.skullwars.collectors.managers.Files;
 import gg.steve.skullwars.collectors.utils.LogUtil;
 import org.bukkit.Bukkit;
@@ -9,13 +15,13 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class FactionCollectorsManager {
     private String factionId;
+    private int lifetime;
     private Map<UUID, Collector> collectors;
     private Map<Material, Integer> collectorContents;
     private FCollectorGui fCollectorGui;
@@ -24,9 +30,11 @@ public class FactionCollectorsManager {
         this.factionId = factionId;
         if (Files.DATA.get().getConfigurationSection(this.factionId) == null) {
             Files.DATA.get().createSection(this.factionId);
+            Files.DATA.get().getConfigurationSection(this.factionId).set("lifetime", 0);
             Files.DATA.get().createSection(this.factionId + ".contents");
             Files.DATA.save();
         }
+        this.lifetime = Files.DATA.get().getConfigurationSection(this.factionId).getInt("lifetime");
         loadCollectorContents(Files.DATA.get().getConfigurationSection(this.factionId + ".contents"));
         loadCollectors(Files.DATA.get().getConfigurationSection(this.factionId));
     }
@@ -41,7 +49,7 @@ public class FactionCollectorsManager {
     public void loadCollectors(ConfigurationSection section) {
         this.collectors = new HashMap<>();
         for (String entry : section.getKeys(false)) {
-            if (entry.equalsIgnoreCase("contents")) continue;
+            if (entry.equalsIgnoreCase("contents") || entry.equalsIgnoreCase("lifetime")) continue;
             int x = section.getInt(entry + ".x");
             int y = section.getInt(entry + ".y");
             int z = section.getInt(entry + ".z");
@@ -53,15 +61,15 @@ public class FactionCollectorsManager {
 
     public void saveCollectorData() {
         ConfigurationSection section = Files.DATA.get().getConfigurationSection(this.factionId);
-        for (Material material : collectorContents.keySet()) {
-            section.set("contents." + material.name(), collectorContents.get(material));
+        section.set("contents", null);
+        section.createSection("contents");
+        section.set("lifetime", lifetime);
+        for (Material material : this.collectorContents.keySet()) {
+            section.set("contents." + material.name(), this.collectorContents.get(material));
         }
-        for (UUID collectorId : collectors.keySet()) {
+        for (UUID collectorId : this.collectors.keySet()) {
             Collector collector = collectors.get(collectorId);
-            section.set(collectorId + ".world", collector.getWorld().getName());
-            section.set(collectorId + ".x", collector.getCollectorLocation().getBlockX());
-            section.set(collectorId + ".y", collector.getCollectorLocation().getBlockY());
-            section.set(collectorId + ".z", collector.getCollectorLocation().getBlockZ());
+            saveCollector(collector);
         }
         Files.DATA.save();
         LogUtil.info("Successfully written collector data for faction: " + this.factionId + " to file.");
@@ -82,18 +90,47 @@ public class FactionCollectorsManager {
     }
 
     public void addDrop(Material material, int amount) {
+        lifetime += amount;
         if (collectorContents.containsKey(material)) {
             amount += collectorContents.get(material);
         }
         collectorContents.put(material, amount);
     }
 
-    public void sellDrops(DropType type) {
+    public String[] sellDrops(DropType type) {
+        double deposit = 0;
+        int itemsSold = 0;
+        List<Material> soldItems = new ArrayList<>();
         for (Material material : collectorContents.keySet()) {
             if (DropType.isDropType(type, material)) {
-                collectorContents.remove(material);
+                double price = ShopGUIPlusIntegration.getItemPrice(material) * this.collectorContents.get(material);
+                deposit += price;
+                itemsSold += this.collectorContents.get(material);
+                Econ.deposit(this.getFaction().getAccountId(), deposit);
+                soldItems.add(material);
             }
         }
+        for (Material sold : soldItems) {
+            LogUtil.info("removing item: " + sold.name());
+            this.collectorContents.remove(sold);
+        }
+        return (SkullCollectors.getNumberFormat().format(deposit) + ":" + SkullCollectors.getNumberFormat().format(itemsSold)).split(":");
+    }
+
+    public double depositTnt(Player player) {
+        int deposit = 0;
+        List<ItemStack> depositedStacks = new ArrayList<>();
+        for (ItemStack item : player.getInventory()) {
+            if (item != null && item.getType().equals(Material.TNT)) {
+                deposit += item.getAmount();
+                depositedStacks.add(item);
+            }
+        }
+        for (ItemStack item : depositedStacks) {
+            player.getInventory().remove(item);
+        }
+        FPlayers.getInstance().getByPlayer(player).getFaction().addTnt(deposit);
+        return deposit;
     }
 
     public int getDropAmount(DropType type) {
@@ -131,5 +168,25 @@ public class FactionCollectorsManager {
 
     public Map<Material, Integer> getCollectorContents() {
         return collectorContents;
+    }
+
+    public Faction getFaction() {
+        return Factions.getInstance().getFactionById(this.factionId);
+    }
+
+    public int getCollectorCount() {
+        return this.collectors.size();
+    }
+
+    public int getCollectedItems() {
+        int amount = 0;
+        for (Material material : this.collectorContents.keySet()) {
+            amount += this.collectorContents.get(material);
+        }
+        return amount;
+    }
+
+    public int getLifetime() {
+        return this.lifetime;
     }
 }

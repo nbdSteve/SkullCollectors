@@ -28,12 +28,12 @@ public abstract class AbstractGui {
     /**
      * Constructor the create a new Gui
      */
-    public AbstractGui(ConfigurationSection section, String type, Integer size) {
+    public AbstractGui(ConfigurationSection section, String type, Integer size, String faction) {
         this.inventoryID = UUID.randomUUID();
         if (!type.equalsIgnoreCase("none")) {
             this.inventory = Bukkit.createInventory(null, InventoryType.valueOf(type.toUpperCase()), ColorUtil.colorize(section.getString("name")));
         } else {
-            this.inventory = Bukkit.createInventory(null, size, ColorUtil.colorize(section.getString("name")));
+            this.inventory = Bukkit.createInventory(null, size, ColorUtil.colorize(section.getString("name").replace("{faction}", faction)));
         }
         this.clickActions = new HashMap<>();
         inventoriesByID.put(getInventoryID(), this);

@@ -2,12 +2,17 @@ name: SkullCollectors
 version: ${project.version}
 main: gg.steve.skullwars.collectors.SkullCollectors
 api-version: 1.13
-prefix: SkullCollectors
+prefix: Collectors
 authors: [stevegoodhill]
-description: Colletors plugin developed privately for SkullWars.
+description: Collectors plugin developed privately for SkullWars.
 depend:
   - Factions
+  - ShopGUIPlus
+  - Vault
+  - HeadDatabase
 commands:
   collector:
     usage: /<command>
     description: Main command for SkullCollectors.
+    aliases:
+      - collectors

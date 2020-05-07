@@ -1,0 +1,35 @@
+reload:
+  - '&5&lCollectors &f>> &7You have successfully reloaded the plugin.'
+
+help:
+  - '&5&lCollectors &f>> &7Please contact nbdSteve#0583 on discord for command, permission and configuration help.'
+
+player-no-faction:
+  - '&5&lCollectors &4(&c&lERROR&4) &f>> &7You can only place a collector if you are a member of a faction.'
+
+not-in-faction-land:
+  - '&5&lCollectors &4(&c&lERROR&4) &f>> &7You may only place collectors in your faction land.'
+
+collector-active:
+  - '&5&lCollectors &4(&c&lERROR&4) &f>> &7You can not place a collector here because there is already one active in this chunk.'
+
+collector-place:
+  - '&5&lCollectors &f>> &7Successfully placed a new collector for your faction, all mob and crop drops will be stored in &6/f collector&7.'
+
+collector-break:
+  - '&5&lCollectors &4(&c&lWARNING&4) &f>> &7Crops and spawners will no longer activate in this chunk until a new collector is placed&7.'
+
+mob-drop-sell:
+  - '&5&lCollectors &f>> &7You have sold &6{amount}&7x &eMOB &7drops &a&l+${deposit} &7has been added to your account.'
+
+crop-drop-sell:
+  - '&5&lCollectors &f>> &7You have sold &6{amount}&7x &eCROP &7drops &a&l+${deposit} &7has been added to your account.'
+
+tnt-deposit:
+  - '&5&lCollectors &f>> &7You have deposited &6{deposit}&7x &eTNT &7into your factions TNT bank.'
+
+give-piece-giver:
+  - '&5&lCollectoers &f>> &7You have given &6{player} &e{amount}&7x collector(s).'
+
+give-piece-receiver:
+  - '&5&lCollectoers &f>> &7You have received &e{amount}&7x collector(s).'

@@ -43,4 +43,8 @@ public enum DropType {
     public static int getCapacity(DropType type) {
         return type.capacity;
     }
+
+    public static boolean isCollectable(Material material) {
+        return (CROP.drops.contains(material) || MOB.drops.contains(material));
+    }
 }

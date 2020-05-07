@@ -4,7 +4,7 @@ import gg.steve.skullwars.collectors.managers.Files;
 import org.bukkit.command.CommandSender;
 
 public enum PermissionNode {
-    GUI("command.gui"),
+    GIVE("command.give"),
     RELOAD("command.reload"),
     HELP("command.help");
 

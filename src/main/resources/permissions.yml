@@ -1,0 +1,4 @@
+command:
+  reload: collectors.reload
+  help: collectors.help
+  give: collectors.give

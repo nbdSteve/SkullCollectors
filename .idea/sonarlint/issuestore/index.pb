@@ -47,8 +47,6 @@ n
 Psrc/main/java/gg/steve/skullwars/collectors/growth/ChunkPreCollectorManager.java,5\c\5c8d38b2bd2e6b4e36c760b6545f6412325017a7
 v
 Fsrc/main/java/gg/steve/skullwars/collectors/utils/ItemBuilderUtil.java,d\e\de61ad4c8cc7c090ba37ac4be31f1637778bb428
-€
-Psrc/main/java/gg/steve/skullwars/collectors/listener/CollectorPlaceListener.java,c\e\cee10ddb50a6df45b9253554162afbaabb1ad8fc
 q
 Asrc/main/java/gg/steve/skullwars/collectors/cmd/CollectorCmd.java,1\6\1663c8f3b86d3c0d290df6322853c079450e738a
 |

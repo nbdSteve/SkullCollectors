@@ -12,9 +12,16 @@ import java.util.List;
 public enum MessageType {
     RELOAD("reload"),
     HELP("help"),
-    GIVE_GIVER("give-piece-giver", "{player}", "{piece}", "{set-name}", "{amount}"),
-    GIVE_RECEIVER("give-piece-receiver", "{piece}", "{set-name}", "{amount}"),
-    INSUFFICIENT_FUNDS("insufficient-funds");
+    GIVE_GIVER("give-piece-giver", "{player}", "{amount}"),
+    GIVE_RECEIVER("give-piece-receiver", "{amount}"),
+    NO_FACTION("player-no-faction"),
+    NOT_IN_FACTION_LAND("not-in-faction-land"),
+    MOB_SELL("mob-drop-sell", "{amount}", "{deposit}"),
+    CROP_SELL("crop-drop-sell", "{amount}", "{deposit}"),
+    TNT_DEPOSIT("tnt-deposit", "{deposit}"),
+    COLLECTOR_ACTIVE("collector-active"),
+    COLLECTOR_PLACE("collector-place"),
+    COLLECTOR_BREAK("collector-break");
 
     private String path;
     private List<String> placeholders;

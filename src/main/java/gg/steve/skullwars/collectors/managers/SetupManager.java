@@ -3,6 +3,7 @@ package gg.steve.skullwars.collectors.managers;
 import gg.steve.skullwars.collectors.SkullCollectors;
 import gg.steve.skullwars.collectors.cmd.CollectorCmd;
 import gg.steve.skullwars.collectors.core.CollectorManager;
+import gg.steve.skullwars.collectors.growth.ChunkPreCollectorManager;
 import gg.steve.skullwars.collectors.gui.GuiClickListener;
 import gg.steve.skullwars.collectors.listener.CollectionListener;
 import gg.steve.skullwars.collectors.listener.InteractionListener;
@@ -45,5 +46,6 @@ public class SetupManager {
         pm.registerEvents(new InteractionListener(), instance);
         pm.registerEvents(new CollectionListener(), instance);
         pm.registerEvents(new CollectorManager(), instance);
+        pm.registerEvents(new ChunkPreCollectorManager(), instance);
     }
 }

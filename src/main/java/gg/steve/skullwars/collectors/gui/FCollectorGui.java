@@ -1,6 +1,9 @@
 package gg.steve.skullwars.collectors.gui;
 
+import gg.steve.skullwars.collectors.SkullCollectors;
+import gg.steve.skullwars.collectors.core.DropType;
 import gg.steve.skullwars.collectors.core.FactionCollectorsManager;
+import gg.steve.skullwars.collectors.message.MessageType;
 import gg.steve.skullwars.collectors.utils.GuiItemUtil;
 import org.bukkit.configuration.ConfigurationSection;
 
@@ -14,7 +17,7 @@ public class FCollectorGui extends AbstractGui {
      * @param section
      */
     public FCollectorGui(ConfigurationSection section, FactionCollectorsManager collectorManager) {
-        super(section, section.getString("type"), section.getInt("size"));
+        super(section, section.getString("type"), section.getInt("size"), collectorManager.getFaction().getTag());
         this.section = section;
         this.collectorManager = collectorManager;
         refresh();
@@ -36,12 +39,21 @@ public class FCollectorGui extends AbstractGui {
                         break;
                     case "sell-mob":
                         player.closeInventory();
+                        String[] mob = collectorManager.sellDrops(DropType.MOB);
+                        MessageType.MOB_SELL.message(player, mob[1], mob[0]);
+                        collectorManager.openFCollectorGui(player);
                         break;
                     case "sell-crop":
                         player.closeInventory();
+                        String[] crop = collectorManager.sellDrops(DropType.CROP);
+                        MessageType.CROP_SELL.message(player, crop[1], crop[0]);
+                        collectorManager.openFCollectorGui(player);
                         break;
                     case "deposit-tnt":
                         player.closeInventory();
+                        double tnt = collectorManager.depositTnt(player);
+                        MessageType.TNT_DEPOSIT.message(player, SkullCollectors.getNumberFormat().format(tnt));
+                        collectorManager.openFCollectorGui(player);
                         break;
                 }
             });
