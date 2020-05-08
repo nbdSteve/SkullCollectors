@@ -6,7 +6,7 @@
 
     <groupId>gg.steve.skullwars</groupId>
     <artifactId>Collectors</artifactId>
-    <version>0.2.3</version>
+    <version>0.2.5</version>
     <packaging>jar</packaging>
 
     <name>Collectors</name>

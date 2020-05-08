@@ -10,6 +10,7 @@ import gg.steve.skullwars.collectors.utils.LogUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
@@ -20,9 +21,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class CollectorManager implements Listener {
     private static Map<Chunk, Collector> activeCollectors;
@@ -75,6 +74,17 @@ public class CollectorManager implements Listener {
     public static void removeFactionCollectorManager(String factionId) {
         if (!factionCollectors.containsKey(factionId)) return;
         factionCollectors.get(factionId).saveCollectorData();
+        List<Collector> factionCollectors = new ArrayList<>();
+        for (Collector collector : activeCollectors.values()) {
+            if (collector.getManager().getFactionId().equalsIgnoreCase(factionId)) {
+                factionCollectors.add(collector);
+                collector.getCollectorLocation().getBlock().setType(Material.AIR);
+                collector.getWorld().dropItem(collector.getCollectorLocation(), getCollectorItem());
+            }
+        }
+        for (Collector collector : factionCollectors) {
+            activeCollectors.remove(collector.getChunk());
+        }
         factionCollectors.remove(factionId);
     }
 
@@ -116,9 +126,8 @@ public class CollectorManager implements Listener {
     @EventHandler
     public void playerQuit(PlayerQuitEvent event) {
         FPlayer fPlayer = FPlayers.getInstance().getByPlayer(event.getPlayer());
-        if (fPlayer.getFaction().getOnlinePlayers().size() <= 1 && factionCollectors.containsKey(fPlayer.getFactionId())) {
-            removeFactionCollectorManager(fPlayer.getFactionId());
-        }
+        if (!factionCollectors.containsKey(fPlayer.getFactionId())) return;
+        factionCollectors.get(fPlayer.getFactionId()).saveCollectorData();
     }
 
     @EventHandler
@@ -140,11 +149,6 @@ public class CollectorManager implements Listener {
 
     @EventHandler
     public void collectorDisbandHandle(FactionDisbandEvent event) {
-        FPlayer fPlayer = FPlayers.getInstance().getByPlayer(event.getPlayer());
-        if (!factionCollectors.containsKey(fPlayer.getFactionId())) {
-            addFactionCollectorManager(fPlayer.getFactionId());
-        }
-        // check permission
-        factionCollectors.get(fPlayer.getFactionId()).openFCollectorGui(event.getPlayer());
+        purgeFactionCollectorData(event.getFPlayer().getFactionId());
     }
 }

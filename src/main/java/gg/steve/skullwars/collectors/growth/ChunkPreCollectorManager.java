@@ -1,5 +1,7 @@
 package gg.steve.skullwars.collectors.growth;
 
+import com.massivecraft.factions.Board;
+import com.massivecraft.factions.FLocation;
 import gg.steve.skullwars.collectors.SkullCollectors;
 import gg.steve.skullwars.collectors.core.CollectorManager;
 import gg.steve.skullwars.collectors.core.DropType;
@@ -33,6 +35,9 @@ public class ChunkPreCollectorManager implements Listener {
     @EventHandler
     public void cropGrow(BlockGrowEvent event) {
         if (event.isCancelled()) return;
+        if (CollectorManager.getFactionCollectorManager(Board.getInstance().getIdAt(new FLocation(event.getBlock().getLocation()))) == null) {
+            CollectorManager.addFactionCollectorManager(Board.getInstance().getIdAt(new FLocation(event.getBlock().getLocation())));
+        }
         if (!CollectorManager.isCollectorActive(event.getBlock().getChunk())) {
             if (event.getBlock().getType().toString().equalsIgnoreCase("sugar_cane_block")) {
                 return;
@@ -49,6 +54,9 @@ public class ChunkPreCollectorManager implements Listener {
     @EventHandler
     public void mobSpawn(SpawnerSpawnEvent event) {
         if (event.isCancelled()) return;
+        if (CollectorManager.getFactionCollectorManager(Board.getInstance().getIdAt(new FLocation(event.getSpawner().getLocation()))) == null) {
+            CollectorManager.addFactionCollectorManager(Board.getInstance().getIdAt(new FLocation(event.getSpawner().getLocation())));
+        }
         if (!CollectorManager.isCollectorActive(event.getSpawner().getChunk())) {
             event.setCancelled(true);
         }
