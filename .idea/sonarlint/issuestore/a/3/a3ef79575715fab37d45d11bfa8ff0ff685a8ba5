@@ -1,5 +1,12 @@
 
-K
-java:S2175X".A "List<Collector>" cannot contain a "String".(« ûÎ8•æÅ•Ÿ.
-U
-java:S1128"3Remove this unused import 'org.bukkit.entity.Item'.(ıõç½øÿÿÿÿ8ÕùÍ.
+V
+java:S2864a"4Iterate over the "entrySet" instead of the "keySet".(èİû®øÿÿÿÿ8Æ¢€÷Ÿ.
+]	java:S125U"<This block of commented-out lines of code should be removed.(ËŒ¿Ğüÿÿÿÿ8‹…»ôŸ.
+W
+java:S1874«"4Remove this use of "getFactionId"; it is deprecated.(üÎ‡çúÿÿÿÿ8ÀËåöŸ.
+o
+java:S1128"MRemove this unused import 'okhttp3.internal.annotations.EverythingIsNonNull'.(Ê‡”åùÿÿÿÿ8Û¨·öŸ.
+W
+java:S1874­"4Remove this use of "getFactionId"; it is deprecated.(’Ş‰·ùÿÿÿÿ8ÕÿÔöŸ.
+`
+java:S1117©"=Rename "collector" which hides the field declared at line 32.(Û¾¡±üÿÿÿÿ8ÕÿÔöŸ.

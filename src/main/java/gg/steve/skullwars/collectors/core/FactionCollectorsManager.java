@@ -76,6 +76,12 @@ public class FactionCollectorsManager {
     }
 
     public void saveCollector(Collector collector) {
+        if (Files.DATA.get().getConfigurationSection(this.factionId) == null) {
+            Files.DATA.get().createSection(this.factionId);
+            Files.DATA.get().getConfigurationSection(this.factionId).set("lifetime", 0);
+            Files.DATA.get().createSection(this.factionId + ".contents");
+            Files.DATA.save();
+        }
         ConfigurationSection section = Files.DATA.get().getConfigurationSection(this.factionId);
         section.set(collector.getCollectorId() + ".world", collector.getWorld().getName());
         section.set(collector.getCollectorId() + ".x", collector.getCollectorLocation().getBlockX());

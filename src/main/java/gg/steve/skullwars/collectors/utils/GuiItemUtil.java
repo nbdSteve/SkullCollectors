@@ -29,6 +29,7 @@ public class GuiItemUtil {
                 SkullCollectors.getNumberFormat().format(collectorManager.getLifetime()));
         builder.addEnchantments(section.getStringList(entry + ".enchantments"));
         builder.addItemFlags(section.getStringList(entry + ".item-flags"));
+        builder.addGuiNBT();
         return builder.getItem();
     }
 }

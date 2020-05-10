@@ -2,7 +2,6 @@ package gg.steve.skullwars.collectors.core;
 
 import gg.steve.skullwars.collectors.managers.Files;
 import org.bukkit.Material;
-import org.bukkit.entity.EntityType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,10 +10,12 @@ public enum DropType {
     MOB("mob-drops"),
     CROP("crop-drops");
 
-    private final List<Material> drops;
-    private final int capacity;
+    private List<Material> drops;
+    private int capacity;
+    private String path;
 
     DropType(String path) {
+        this.path = path;
         this.drops = new ArrayList<>();
         this.capacity = Files.CONFIG.get().getInt(path + ".capacity");
         for (String material : Files.CONFIG.get().getStringList(path + ".items")) {
@@ -46,5 +47,15 @@ public enum DropType {
 
     public static boolean isCollectable(Material material) {
         return (CROP.drops.contains(material) || MOB.drops.contains(material));
+    }
+
+    public static void reload() {
+        for (DropType type : DropType.values()) {
+            type.drops = new ArrayList<>();
+            type.capacity = Files.CONFIG.get().getInt(type.path + ".capacity");
+            for (String material : Files.CONFIG.get().getStringList(type.path + ".items")) {
+                type.drops.add(Material.valueOf(material.toUpperCase()));
+            }
+        }
     }
 }

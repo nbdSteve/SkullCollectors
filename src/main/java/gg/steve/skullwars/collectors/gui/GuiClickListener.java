@@ -1,5 +1,7 @@
 package gg.steve.skullwars.collectors.gui;
 
+import gg.steve.skullwars.collectors.nbt.NBTItem;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -19,6 +21,9 @@ public class GuiClickListener implements Listener {
         Player player = (Player) event.getWhoClicked();
         if (AbstractGui.openInventories.get(player.getUniqueId()) != null) {
             event.setCancelled(true);
+            if (event.getCurrentItem() == null || event.getCurrentItem().getType().equals(Material.AIR)) return;
+            NBTItem nbtItem = new NBTItem(event.getCurrentItem());
+            if (!nbtItem.getBoolean("collectors.gui.item")) return;
             AbstractGui gui =
                     AbstractGui.getInventoriesByID().get(AbstractGui.openInventories.get(player.getUniqueId()));
             AbstractGui.inventoryClickActions clickAction = gui.getClickActions().get(event.getSlot());

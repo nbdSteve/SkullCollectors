@@ -84,7 +84,7 @@ public class InteractionListener implements Listener {
         collector.getManager().openFCollectorGui(event.getPlayer());
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
+    @EventHandler
     public void collectorExplode(EntityExplodeEvent event) {
         for (Block block : event.blockList()) {
             Chunk chunk = block.getChunk();

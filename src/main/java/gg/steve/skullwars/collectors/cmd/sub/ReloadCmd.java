@@ -1,6 +1,7 @@
 package gg.steve.skullwars.collectors.cmd.sub;
 
 import gg.steve.skullwars.collectors.SkullCollectors;
+import gg.steve.skullwars.collectors.core.DropType;
 import gg.steve.skullwars.collectors.managers.Files;
 import gg.steve.skullwars.collectors.message.CommandDebug;
 import gg.steve.skullwars.collectors.message.MessageType;
@@ -18,6 +19,7 @@ public class ReloadCmd {
         Files.reload();
         Bukkit.getPluginManager().disablePlugin(SkullCollectors.get());
         Bukkit.getPluginManager().enablePlugin(SkullCollectors.get());
+        DropType.reload();
         MessageType.RELOAD.message(sender);
     }
 }

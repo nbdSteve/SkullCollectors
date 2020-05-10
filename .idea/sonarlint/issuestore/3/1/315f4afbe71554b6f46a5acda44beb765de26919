@@ -1,17 +1,19 @@
 
-k
-java:S1192!"IDefine a constant instead of duplicating this literal "lifetime" 4 times.(”ªŠ¿ıÿÿÿÿ8”¿…ê.
+Q
+java:S2864n"4Iterate over the "entrySet" instead of the "keySet".(Ÿ²»ã8¢’Éæ.
 k
 java:S11924"IDefine a constant instead of duplicating this literal "contents" 3 times.(óåãıÿÿÿÿ8ƒ²ºé.
 Q
 java:S2864F"4Iterate over the "entrySet" instead of the "keySet".(–ı÷8î¡™Ï.
 R
-java:S2864¶"4Iterate over the "entrySet" instead of the "keySet".(ÀêÁ¶8§ØÒé.
-A
-java:S1640+"Convert this Map to an EnumMap.(”ò‡Ãüÿÿÿÿ8ÙåÌË.
-Q
-java:S2864h"4Iterate over the "entrySet" instead of the "keySet".(Ÿ²»ã8¢’Éæ.
+java:S2864¼"4Iterate over the "entrySet" instead of the "keySet".(ÀêÁ¶8§ØÒé.
+k
+java:S1192!"IDefine a constant instead of duplicating this literal "lifetime" 5 times.(”ªŠ¿ıÿÿÿÿ8”¿…ê.
+R
+java:S2864"4Iterate over the "entrySet" instead of the "keySet".(Ÿ²»ã8Â››é.
 Q
 java:S2864C"4Iterate over the "entrySet" instead of the "keySet".(ÀêÁ¶8õùÌ.
-R
-java:S2864‰"4Iterate over the "entrySet" instead of the "keySet".(Ÿ²»ã8Â››é.
+l
+java:S1192""JDefine a constant instead of duplicating this literal ".contents" 3 times.(…‘É”ÿÿÿÿÿ8×“÷Ÿ.
+A
+java:S1640+"Convert this Map to an EnumMap.(”ò‡Ãüÿÿÿÿ8ÙåÌË.

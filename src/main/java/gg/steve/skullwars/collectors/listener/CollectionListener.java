@@ -7,6 +7,7 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
@@ -14,7 +15,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class CollectionListener implements Listener {
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGH)
     public void entityDeath(EntityDeathEvent event) {
         if (!CollectorManager.isCollectorActive(event.getEntity().getWorld().getChunkAt(event.getEntity().getLocation())))
             return;
@@ -22,7 +23,7 @@ public class CollectionListener implements Listener {
         collector.creatureDeath(event);
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGH)
     public void playerBreak(BlockBreakEvent event) {
         if (event.isCancelled()) return;
         if (!CollectorManager.isCollectorActive(event.getBlock().getChunk())) return;

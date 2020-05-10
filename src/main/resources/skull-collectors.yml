@@ -16,11 +16,11 @@ mob-drops:
 crop-drops:
   capacity: 100
   items:
-  - sugar_cane
+    - sugar_cane
 
 collector:
   name: '&c&lSKULL COLLECTOR'
-  material: flower_pot_item
+  material: ender_portal_frame
   data: 0
   lore:
     - ''

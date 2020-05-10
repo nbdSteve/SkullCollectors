@@ -21,8 +21,6 @@ v
 Fsrc/main/java/gg/steve/skullwars/collectors/managers/SetupManager.java,8\c\8c9b5680fd80950c7f493722b48cad2eeef8486c
 p
 @src/main/java/gg/steve/skullwars/collectors/SkullCollectors.java,1\a\1abff7b103920a79476e0ca1129bdc82699ef0f9
-r
-Bsrc/main/java/gg/steve/skullwars/collectors/utils/CommandUtil.java,6\a\6a95db1f76640d15fae84610a58449b87fdb679a
 €
 Psrc/main/java/gg/steve/skullwars/collectors/nbt/utils/annotations/CheckUtil.java,c\0\c0a3a96b34141bf46c4748b4d88b353b6a07de60
 r
@@ -69,3 +67,9 @@ z
 Jsrc/main/java/gg/steve/skullwars/collectors/permission/PermissionNode.java,2\2\22588ae66ed291ff9fa2a0ac4d6eeeef703b37a6
 p
 @src/main/java/gg/steve/skullwars/collectors/cmd/sub/GiveCmd.java,f\1\f12dda3f20e46d3cf988549a696c58ef0ad95817
+u
+Esrc/main/java/gg/steve/skullwars/collectors/managers/FileManager.java,0\1\01f2768bd070cf447240356402c8153c0b048cd9
+s
+Csrc/main/java/gg/steve/skullwars/collectors/utils/YamlFileUtil.java,1\c\1c0caaedb6f4ffb56b323362ca4a832cf24ee9f9
+u
+Esrc/main/java/gg/steve/skullwars/collectors/gui/GuiClickListener.java,e\f\ef33763ebc69db0594849952aa4daa816fa69ef4

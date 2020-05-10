@@ -100,6 +100,11 @@ public class ItemBuilderUtil {
 //        nbtItem.setString("skull.collector.id", String.valueOf(UUID.randomUUID()));
     }
 
+    public void addGuiNBT() {
+        nbtItem = new NBTItem(item);
+        nbtItem.setBoolean("collectors.gui.item", true);
+    }
+
     public void setItemMeta(ItemMeta itemMeta) {
         this.itemMeta = itemMeta;
     }

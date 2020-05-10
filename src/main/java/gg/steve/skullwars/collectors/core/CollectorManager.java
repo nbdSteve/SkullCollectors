@@ -3,10 +3,13 @@ package gg.steve.skullwars.collectors.core;
 import com.massivecraft.factions.FPlayer;
 import com.massivecraft.factions.FPlayers;
 import com.massivecraft.factions.event.FactionDisbandEvent;
+import com.massivecraft.factions.event.LandUnclaimAllEvent;
+import com.massivecraft.factions.event.LandUnclaimEvent;
 import gg.steve.skullwars.collectors.managers.Files;
 import gg.steve.skullwars.collectors.message.MessageType;
 import gg.steve.skullwars.collectors.utils.ItemBuilderUtil;
 import gg.steve.skullwars.collectors.utils.LogUtil;
+import okhttp3.internal.annotations.EverythingIsNonNull;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
@@ -71,28 +74,31 @@ public class CollectorManager implements Listener {
         factionCollectors.put(factionId, new FactionCollectorsManager(factionId));
     }
 
-    public static void removeFactionCollectorManager(String factionId) {
+    public static void removeFactionCollectorManager(String factionId, boolean disband) {
         if (!factionCollectors.containsKey(factionId)) return;
         factionCollectors.get(factionId).saveCollectorData();
-        List<Collector> factionCollectors = new ArrayList<>();
+        List<Collector> factionCollector = new ArrayList<>();
         for (Collector collector : activeCollectors.values()) {
             if (collector.getManager().getFactionId().equalsIgnoreCase(factionId)) {
-                factionCollectors.add(collector);
+                factionCollector.add(collector);
                 collector.getCollectorLocation().getBlock().setType(Material.AIR);
-                collector.getWorld().dropItem(collector.getCollectorLocation(), getCollectorItem());
+//                collector.getWorld().dropItem(collector.getCollectorLocation(), getCollectorItem());
             }
         }
-        for (Collector collector : factionCollectors) {
+        for (Collector collector : factionCollector) {
             activeCollectors.remove(collector.getChunk());
         }
-        factionCollectors.remove(factionId);
+        factionCollectors.get(factionId).getCollectors().clear();
+        if (disband) factionCollectors.remove(factionId);
     }
 
     public static void saveAllFactionCollectors() {
         if (factionCollectors == null || factionCollectors.isEmpty()) return;
         for (String factionId : factionCollectors.keySet()) {
-            removeFactionCollectorManager(factionId);
+            factionCollectors.get(factionId).saveCollectorData();
         }
+        activeCollectors.clear();
+        factionCollectors.clear();
     }
 
     public static void addCollectorForFaction(String factionId, Location location) {
@@ -106,8 +112,8 @@ public class CollectorManager implements Listener {
         return factionCollectors.get(factionId);
     }
 
-    public static void purgeFactionCollectorData(String factionId) {
-        removeFactionCollectorManager(factionId);
+    public static void purgeFactionCollectorData(String factionId, boolean disband) {
+        removeFactionCollectorManager(factionId, disband);
         Files.DATA.get().set(factionId, null);
         Files.DATA.save();
     }
@@ -132,7 +138,7 @@ public class CollectorManager implements Listener {
 
     @EventHandler
     public void collectorCommand(PlayerCommandPreprocessEvent event) {
-        if (!event.getMessage().equalsIgnoreCase("/f collector")) return;
+        if (!(event.getMessage().equalsIgnoreCase("/f collector") || event.getMessage().equalsIgnoreCase("/f collectors"))) return;
         event.setCancelled(true);
         FPlayer fPlayer = FPlayers.getInstance().getByPlayer(event.getPlayer());
         if (!fPlayer.hasFaction()) {
@@ -149,6 +155,22 @@ public class CollectorManager implements Listener {
 
     @EventHandler
     public void collectorDisbandHandle(FactionDisbandEvent event) {
-        purgeFactionCollectorData(event.getFPlayer().getFactionId());
+        purgeFactionCollectorData(event.getFPlayer().getFactionId(), true);
+    }
+
+    @EventHandler
+    public void unclaimAll(LandUnclaimAllEvent event) {
+        purgeFactionCollectorData(event.getfPlayer().getFactionId(), false);
+    }
+
+    @EventHandler
+    public void unclaim(LandUnclaimEvent event) {
+        if (!activeCollectors.containsKey(event.getLocation().getChunk())) return;
+        Collector collector = activeCollectors.get(event.getLocation().getChunk());
+        collector.getCollectorLocation().getBlock().setType(Material.AIR);
+        Files.DATA.get().set(event.getFactionId() + "." + collector.getCollectorId(), null);
+        Files.DATA.save();
+        factionCollectors.get(event.getFactionId()).removeCollector(collector);
+        activeCollectors.remove(event.getLocation().getChunk());
     }
 }

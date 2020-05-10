@@ -6,9 +6,11 @@ import gg.steve.skullwars.collectors.SkullCollectors;
 import gg.steve.skullwars.collectors.core.CollectorManager;
 import gg.steve.skullwars.collectors.core.DropType;
 import gg.steve.skullwars.collectors.managers.Files;
+import gg.steve.skullwars.collectors.utils.LogUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Damageable;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
@@ -39,10 +41,11 @@ public class ChunkPreCollectorManager implements Listener {
             CollectorManager.addFactionCollectorManager(Board.getInstance().getIdAt(new FLocation(event.getBlock().getLocation())));
         }
         if (!CollectorManager.isCollectorActive(event.getBlock().getChunk())) {
-            if (event.getBlock().getType().toString().equalsIgnoreCase("sugar_cane_block")) {
+            if (event.getBlock().getRelative(BlockFace.DOWN).getType().toString().equalsIgnoreCase("sugar_cane_block")) {
                 return;
             }
             event.setCancelled(true);
+            return;
         }
         if (CollectorManager.getCollector(event.getBlock().getChunk()).getManager().getDropAmount(DropType.CROP) >= DropType.getCapacity(DropType.CROP)) {
             event.getBlock().setType(Material.AIR);
@@ -59,6 +62,7 @@ public class ChunkPreCollectorManager implements Listener {
         }
         if (!CollectorManager.isCollectorActive(event.getSpawner().getChunk())) {
             event.setCancelled(true);
+            return;
         }
         if (CollectorManager.getCollector(event.getSpawner().getChunk()).getManager().getDropAmount(DropType.MOB) >= DropType.getCapacity(DropType.MOB)) {
             event.setCancelled(true);

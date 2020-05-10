@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>gg.steve.skullwars</groupId>
-    <artifactId>Collectors</artifactId>
-    <version>0.2.5</version>
+    <artifactId>SkullCollectors</artifactId>
+    <version>0.2.8</version>
     <packaging>jar</packaging>
 
     <name>Collectors</name>
@@ -80,16 +80,19 @@
             <groupId>com.github.SaberLLC</groupId>
             <artifactId>Saber-Factions</artifactId>
             <version>2.3.3-STABLE</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.github.brcdev-minecraft</groupId>
             <artifactId>shopgui-api</artifactId>
             <version>1.2.0</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.github.shynixn.headdatabase</groupId>
             <artifactId>hdb-api</artifactId>
             <version>1.0</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 </project>
