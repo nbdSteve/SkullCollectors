@@ -1,7 +1,7 @@
 package gg.steve.skullwars.collectors.utils;
 
 import gg.steve.skullwars.collectors.SkullCollectors;
-import gg.steve.skullwars.collectors.core.DropType;
+import gg.steve.skullwars.collectors.drops.DropType;
 import gg.steve.skullwars.collectors.core.FactionCollectorsManager;
 import me.arcaniax.hdb.api.HeadDatabaseAPI;
 import org.bukkit.configuration.ConfigurationSection;

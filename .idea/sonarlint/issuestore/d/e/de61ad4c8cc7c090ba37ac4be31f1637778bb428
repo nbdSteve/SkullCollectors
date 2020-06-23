@@ -1,10 +1,10 @@
 
-X	java:S125d"<This block of commented-out lines of code should be removed.(¤±ç8Ø¹éøŸ.
-L
-java:S1874S"1Remove this use of "getByName"; it is deprecated.(ÆßÀïüÿÿÿÿ
 P
 java:S1874"5Remove this use of "getDurability"; it is deprecated.(“Ïışÿÿÿÿ
 G
 java:S1874+"1Remove this use of "ItemStack"; it is deprecated.(‚¼é«
+L
+java:S1874S"1Remove this use of "getByName"; it is deprecated.(ÆßÀïüÿÿÿÿ
+X	java:S125d"<This block of commented-out lines of code should be removed.(¤±ç8Ø¹éøŸ.
 L
 java:S1874Q"1Remove this use of "getByName"; it is deprecated.(·éÁ˜üÿÿÿÿ

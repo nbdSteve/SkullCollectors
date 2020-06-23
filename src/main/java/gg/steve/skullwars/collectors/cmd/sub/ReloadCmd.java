@@ -1,7 +1,7 @@
 package gg.steve.skullwars.collectors.cmd.sub;
 
 import gg.steve.skullwars.collectors.SkullCollectors;
-import gg.steve.skullwars.collectors.core.DropType;
+import gg.steve.skullwars.collectors.drops.DropType;
 import gg.steve.skullwars.collectors.managers.Files;
 import gg.steve.skullwars.collectors.message.CommandDebug;
 import gg.steve.skullwars.collectors.message.MessageType;

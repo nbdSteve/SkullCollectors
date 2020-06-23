@@ -2,32 +2,32 @@ package gg.steve.skullwars.collectors.growth;
 
 import com.massivecraft.factions.Board;
 import com.massivecraft.factions.FLocation;
+import com.massivecraft.factions.Faction;
+import com.massivecraft.factions.integration.Econ;
+import gg.steve.mc.skullwars.raids.core.FBaseManager;
 import gg.steve.skullwars.collectors.SkullCollectors;
+import gg.steve.skullwars.collectors.core.Collector;
 import gg.steve.skullwars.collectors.core.CollectorManager;
-import gg.steve.skullwars.collectors.core.DropType;
+import gg.steve.skullwars.collectors.drops.DropType;
+import gg.steve.skullwars.collectors.drops.EntityDrops;
 import gg.steve.skullwars.collectors.managers.Files;
-import gg.steve.skullwars.collectors.utils.LogUtil;
+import net.techcable.tacospigot.event.entity.SpawnerPreSpawnEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.entity.Damageable;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockGrowEvent;
-import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.event.entity.SpawnerSpawnEvent;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 public class ChunkPreCollectorManager implements Listener {
-    private static Map<Block, Integer> spawners;
+    private static List<Block> spawners;
 
     public static void initialise() {
-        spawners = new HashMap<>();
+        spawners = new ArrayList<>();
         Bukkit.getScheduler().runTaskTimer(SkullCollectors.get(), () -> {
             if (spawners.isEmpty()) return;
             spawners.clear();
@@ -55,39 +55,42 @@ public class ChunkPreCollectorManager implements Listener {
     }
 
     @EventHandler
-    public void mobSpawn(SpawnerSpawnEvent event) {
+    public void mobSpawn(SpawnerPreSpawnEvent event) {
         if (event.isCancelled()) return;
-        if (CollectorManager.getFactionCollectorManager(Board.getInstance().getIdAt(new FLocation(event.getSpawner().getLocation()))) == null) {
-            CollectorManager.addFactionCollectorManager(Board.getInstance().getIdAt(new FLocation(event.getSpawner().getLocation())));
-        }
-        if (!CollectorManager.isCollectorActive(event.getSpawner().getChunk())) {
+        Faction faction = Board.getInstance().getFactionAt(new FLocation(event.getLocation()));
+        if (faction.isWilderness() || faction.isSafeZone() || faction.isWarZone()) {
             event.setCancelled(true);
             return;
         }
-        if (CollectorManager.getCollector(event.getSpawner().getChunk()).getManager().getDropAmount(DropType.MOB) >= DropType.getCapacity(DropType.MOB)) {
+        if (!FBaseManager.isSpawnerChunk(faction, event.getLocation().getChunk())) {
+            event.setCancelled(true);
+            return;
+        }
+        if (CollectorManager.getFactionCollectorManager(faction.getId()) == null) {
+            CollectorManager.addFactionCollectorManager(faction.getId());
+        }
+        if (!CollectorManager.isCollectorActive(event.getLocation().getChunk())) {
+            event.setCancelled(true);
+            return;
+        }
+        if (CollectorManager.getCollector(event.getLocation().getChunk()).getManager().getDropAmount(DropType.MOB) >= DropType.getCapacity(DropType.MOB)) {
             event.setCancelled(true);
             return;
         }
         if (spawners == null) {
             initialise();
         }
-        if (spawners.containsKey(event.getSpawner().getBlock())) {
-            if (spawners.get(event.getSpawner().getBlock()) >= Files.getSpawnsPerMinute()) {
-                event.setCancelled(true);
-                return;
-            }
+        if (spawners.contains(event.getLocation().getBlock())) {
+            event.setCancelled(true);
+            return;
         } else {
-            spawners.put(event.getSpawner().getBlock(), 0);
+            spawners.add(event.getLocation().getBlock());
         }
-        spawners.put(event.getSpawner().getBlock(), spawners.get(event.getSpawner().getBlock()) + 1);
-        if (!Files.doSpawn(event.getEntityType())) {
-            if (Files.doVanillaDrops()) {
-                Damageable entity = (Damageable) event.getEntity();
-                entity.damage(10000);
-            } else {
-                Bukkit.getPluginManager().callEvent(new EntityDeathEvent((LivingEntity) event.getEntity(), new ArrayList<>()));
-            }
-            event.getEntity().remove();
+        if (!Files.doSpawn(event.getSpawnedType())) {
+            event.setCancelled(true);
+            Collector collector = CollectorManager.getCollector(event.getLocation().getChunk());
+            collector.creatureDeath(EntityDrops.getDrops(event.getSpawnedType()));
+            Econ.deposit(faction.getAccountId(), EntityDrops.getMoney(event.getSpawnedType()));
         }
     }
 }

@@ -2,7 +2,7 @@ package gg.steve.skullwars.collectors.listener;
 
 import gg.steve.skullwars.collectors.core.Collector;
 import gg.steve.skullwars.collectors.core.CollectorManager;
-import gg.steve.skullwars.collectors.core.DropType;
+import gg.steve.skullwars.collectors.drops.DropType;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;

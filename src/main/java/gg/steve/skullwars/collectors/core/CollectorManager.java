@@ -2,6 +2,7 @@ package gg.steve.skullwars.collectors.core;
 
 import com.massivecraft.factions.FPlayer;
 import com.massivecraft.factions.FPlayers;
+import com.massivecraft.factions.Faction;
 import com.massivecraft.factions.event.FactionDisbandEvent;
 import com.massivecraft.factions.event.LandUnclaimAllEvent;
 import com.massivecraft.factions.event.LandUnclaimEvent;
@@ -9,13 +10,11 @@ import gg.steve.skullwars.collectors.managers.Files;
 import gg.steve.skullwars.collectors.message.MessageType;
 import gg.steve.skullwars.collectors.utils.ItemBuilderUtil;
 import gg.steve.skullwars.collectors.utils.LogUtil;
-import okhttp3.internal.annotations.EverythingIsNonNull;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -122,6 +121,14 @@ public class CollectorManager implements Listener {
         return collector;
     }
 
+    public static void openCollectorGui(FPlayer fPlayer) {
+        factionCollectors.get(fPlayer.getFactionId()).openFCollectorGui(fPlayer.getPlayer());
+    }
+
+    public static boolean isCollectorManagerLoaded(Faction faction) {
+        return factionCollectors.containsKey(faction.getId());
+    }
+
     @EventHandler
     public void playerJoin(PlayerJoinEvent event) {
         FPlayer fPlayer = FPlayers.getInstance().getByPlayer(event.getPlayer());
@@ -136,22 +143,23 @@ public class CollectorManager implements Listener {
         factionCollectors.get(fPlayer.getFactionId()).saveCollectorData();
     }
 
-    @EventHandler
-    public void collectorCommand(PlayerCommandPreprocessEvent event) {
-        if (!(event.getMessage().equalsIgnoreCase("/f collector") || event.getMessage().equalsIgnoreCase("/f collectors"))) return;
-        event.setCancelled(true);
-        FPlayer fPlayer = FPlayers.getInstance().getByPlayer(event.getPlayer());
-        if (!fPlayer.hasFaction()) {
-            MessageType.NO_FACTION.message(event.getPlayer());
-            event.setCancelled(true);
-            return;
-        }
-        if (!factionCollectors.containsKey(fPlayer.getFactionId())) {
-            addFactionCollectorManager(fPlayer.getFactionId());
-        }
-        // check permission
-        factionCollectors.get(fPlayer.getFactionId()).openFCollectorGui(event.getPlayer());
-    }
+//    @EventHandler
+//    public void collectorCommand(PlayerCommandPreprocessEvent event) {
+//        if (!(event.getMessage().equalsIgnoreCase("/f collector") || event.getMessage().equalsIgnoreCase("/f collectors")))
+//            return;
+//        event.setCancelled(true);
+//        FPlayer fPlayer = FPlayers.getInstance().getByPlayer(event.getPlayer());
+//        if (!fPlayer.hasFaction()) {
+//            MessageType.NO_FACTION.message(event.getPlayer());
+//            event.setCancelled(true);
+//            return;
+//        }
+//        if (!factionCollectors.containsKey(fPlayer.getFactionId())) {
+//            addFactionCollectorManager(fPlayer.getFactionId());
+//        }
+//        // check permission
+//        factionCollectors.get(fPlayer.getFactionId()).openFCollectorGui(event.getPlayer());
+//    }
 
     @EventHandler
     public void collectorDisbandHandle(FactionDisbandEvent event) {

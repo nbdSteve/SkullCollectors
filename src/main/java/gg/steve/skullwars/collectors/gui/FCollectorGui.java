@@ -1,7 +1,7 @@
 package gg.steve.skullwars.collectors.gui;
 
 import gg.steve.skullwars.collectors.SkullCollectors;
-import gg.steve.skullwars.collectors.core.DropType;
+import gg.steve.skullwars.collectors.drops.DropType;
 import gg.steve.skullwars.collectors.core.FactionCollectorsManager;
 import gg.steve.skullwars.collectors.message.MessageType;
 import gg.steve.skullwars.collectors.utils.GuiItemUtil;

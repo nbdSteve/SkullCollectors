@@ -40,10 +40,6 @@ public enum Files {
         return CONFIG.get().getStringList("allowed-worlds").contains(world.getName());
     }
 
-    public static int getSpawnsPerMinute() {
-        return CONFIG.get().getInt("spawns-per-minute");
-    }
-
     public static boolean doSpawn(EntityType type) {
         return CONFIG.get().getStringList("enabled-spawn-types").contains(type.toString().toLowerCase());
     }

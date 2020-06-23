@@ -1,5 +1,7 @@
 package gg.steve.skullwars.collectors.core;
 
+import gg.steve.skullwars.collectors.drops.DropType;
+import gg.steve.skullwars.collectors.utils.LogUtil;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -39,6 +41,14 @@ public class Collector implements CollectorEvents {
         }
         for (ItemStack item : collectedItems) {
             event.getDrops().remove(item);
+        }
+    }
+
+    public void creatureDeath(List<ItemStack> drops) {
+        for (ItemStack item : drops) {
+            if (DropType.isMobDrop(item.getType()) && this.manager.getDropAmount(DropType.MOB) + item.getAmount() < DropType.getCapacity(DropType.MOB)) {
+                this.manager.addDrop(item.getType(), item.getAmount());
+            }
         }
     }
 

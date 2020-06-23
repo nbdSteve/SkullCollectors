@@ -1,4 +1,4 @@
-package gg.steve.skullwars.collectors.core;
+package gg.steve.skullwars.collectors.drops;
 
 import gg.steve.skullwars.collectors.managers.Files;
 import org.bukkit.Material;

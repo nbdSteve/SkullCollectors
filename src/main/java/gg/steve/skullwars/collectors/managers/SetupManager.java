@@ -1,7 +1,9 @@
 package gg.steve.skullwars.collectors.managers;
 
+import com.massivecraft.factions.FactionsPlugin;
 import gg.steve.skullwars.collectors.SkullCollectors;
 import gg.steve.skullwars.collectors.cmd.CollectorCmd;
+import gg.steve.skullwars.collectors.cmd.FCollectorCmd;
 import gg.steve.skullwars.collectors.core.CollectorManager;
 import gg.steve.skullwars.collectors.growth.ChunkPreCollectorManager;
 import gg.steve.skullwars.collectors.gui.GuiClickListener;
@@ -33,6 +35,7 @@ public class SetupManager {
 
     public static void registerCommands(SkullCollectors instance) {
         instance.getCommand("collector").setExecutor(new CollectorCmd());
+        FactionsPlugin.getInstance().cmdBase.addSubCommand(new FCollectorCmd());
     }
 
     /**

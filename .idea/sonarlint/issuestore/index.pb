@@ -73,3 +73,11 @@ s
 Csrc/main/java/gg/steve/skullwars/collectors/utils/YamlFileUtil.java,1\c\1c0caaedb6f4ffb56b323362ca4a832cf24ee9f9
 u
 Esrc/main/java/gg/steve/skullwars/collectors/gui/GuiClickListener.java,e\f\ef33763ebc69db0594849952aa4daa816fa69ef4
+r
+Bsrc/main/java/gg/steve/skullwars/collectors/cmd/FCollectorCmd.java,5\3\53ad60366c5b50b2578404f1aae29b311960da6a
+o
+?src/main/java/gg/steve/skullwars/collectors/drops/DropType.java,1\a\1a45f4cf565a945d7686552e7276014cd46a0c07
+r
+Bsrc/main/java/gg/steve/skullwars/collectors/drops/EntityDrops.java,4\f\4f86241b9b868d146c782dd62411c8d9174a18bd
+u
+Esrc/main/java/gg/steve/skullwars/collectors/drops/MobLootManager.java,2\2\2292e6ea935ccb280dd51f1b7773d3c82ff6e428

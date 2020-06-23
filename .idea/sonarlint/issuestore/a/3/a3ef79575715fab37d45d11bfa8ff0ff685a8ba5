@@ -1,12 +1,12 @@
 
+W
+java:S1874µ"4Remove this use of "getFactionId"; it is deprecated.(’Ş‰·ùÿÿÿÿ8ÕÿÔöŸ.
+^	java:S125¡"<This block of commented-out lines of code should be removed.(ÊÕÜıÿÿÿÿ8íê—¬.
+W
+java:S1874³"4Remove this use of "getFactionId"; it is deprecated.(üÎ‡çúÿÿÿÿ8ÀËåöŸ.
 V
-java:S2864a"4Iterate over the "entrySet" instead of the "keySet".(èİû®øÿÿÿÿ8Æ¢€÷Ÿ.
-]	java:S125U"<This block of commented-out lines of code should be removed.(ËŒ¿Ğüÿÿÿÿ8‹…»ôŸ.
-W
-java:S1874«"4Remove this use of "getFactionId"; it is deprecated.(üÎ‡çúÿÿÿÿ8ÀËåöŸ.
-o
-java:S1128"MRemove this unused import 'okhttp3.internal.annotations.EverythingIsNonNull'.(Ê‡”åùÿÿÿÿ8Û¨·öŸ.
-W
-java:S1874­"4Remove this use of "getFactionId"; it is deprecated.(’Ş‰·ùÿÿÿÿ8ÕÿÔöŸ.
+java:S2864`"4Iterate over the "entrySet" instead of the "keySet".(èİû®øÿÿÿÿ8Æ¢€÷Ÿ.
+]	java:S125T"<This block of commented-out lines of code should be removed.(ËŒ¿Ğüÿÿÿÿ8‹…»ôŸ.
 `
-java:S1117©"=Rename "collector" which hides the field declared at line 32.(Û¾¡±üÿÿÿÿ8ÕÿÔöŸ.
+java:S1117±"=Rename "collector" which hides the field declared at line 31.(Û¾¡±üÿÿÿÿ8ÕÿÔöŸ.
+^	java:S125“"<This block of commented-out lines of code should be removed.(¥¦˜üÿÿÿÿ8íê—¬.

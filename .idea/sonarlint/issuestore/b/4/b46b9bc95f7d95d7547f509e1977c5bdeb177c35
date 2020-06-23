@@ -1,24 +1,24 @@
 
-q
-java:S1104"[Make inventoriesByID a static final constant or non-public and provide accessors if needed.(Ÿ”ôä
-3
-java:S2386"Make this member "protected".(Ÿ”ôä
 ƒ
 java:S1319w"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(ûä¡²
-q
-java:S1104"[Make openInventories a static final constant or non-public and provide accessors if needed.(ŠÃª˜
-K
-java:S1444"5Make this "public static inventoriesByID" field final(Ÿ”ôä
+f	java:S114~"QRename this interface name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(êÿØ“
 
 java:S1319"wThe type of the "openInventories" object should be an interface such as "Map" rather than the implementation "HashMap".(ŠÃª˜
+ƒ
+java:S1319/"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(·¤ú‰
+K
+java:S1444"5Make this "public static inventoriesByID" field final(Ÿ”ôä
 K
 java:S1444"5Make this "public static openInventories" field final(ŠÃª˜
-f	java:S114~"QRename this interface name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(êÿØ“
+3
+java:S2386"Make this member "protected".(Ÿ”ôä
+
+java:S1319"wThe type of the "inventoriesByID" object should be an interface such as "Map" rather than the implementation "HashMap".(Ÿ”ôä
+q
+java:S1104"[Make openInventories a static final constant or non-public and provide accessors if needed.(ŠÃª˜
 3
 java:S2386"Make this member "protected".(ŠÃª˜
 ˆ
 java:S13198"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(Ôƒ›şÿÿÿÿ
-
-java:S1319"wThe type of the "inventoriesByID" object should be an interface such as "Map" rather than the implementation "HashMap".(Ÿ”ôä
-ƒ
-java:S1319/"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(·¤ú‰
+q
+java:S1104"[Make inventoriesByID a static final constant or non-public and provide accessors if needed.(Ÿ”ôä

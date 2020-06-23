@@ -1,8 +1,6 @@
 allowed-worlds:
   - world
 
-spawns-per-minute: 3
-
 do-vanilla-drops: true
 
 enabled-spawn-types:
@@ -12,11 +10,26 @@ mob-drops:
   capacity: 100
   items:
     - sulphur
+    - bones
+    - ender_pearl
 
 crop-drops:
   capacity: 100
   items:
     - sugar_cane
+
+loot-per-minute:
+  creeper:
+    items:
+      # syntax: material:id-amount
+      - 'tnt:0-8'
+    money: 0.0
+  enderman:
+    items:
+    money: 20.0
+  skeleton:
+    items:
+    money: 10.0
 
 collector:
   name: '&c&lSKULL COLLECTOR'

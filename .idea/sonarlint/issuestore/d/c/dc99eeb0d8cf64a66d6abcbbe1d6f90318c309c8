@@ -1,19 +1,3 @@
 
-j
-java:S1128"HRemove this unused import 'gg.steve.skullwars.collectors.utils.LogUtil'.(©«íçıÿÿÿÿ8ïÚÆù.
-h
-java:S1128"FRemove this unused import 'org.bukkit.event.entity.EntityDamageEvent'.(ÁˆĞ˜ıÿÿÿÿ8ã”šù.
-O
-java:S1874K"3Remove this use of "isCancelled"; it is deprecated.(˜’ãw8âÀÛç.
-e
-java:S1128"HRemove this unused import 'org.bukkit.event.entity.ExplosionPrimeEvent'.(‹€ëÔ8Æù.
-W
-java:S1874 "5Remove this use of "getItemInHand"; it is deprecated.(Õ¯˜Ôøÿÿÿÿ8ËïÊÑ.
-o
-java:S1128"RRemove this unused import 'com.destroystokyo.paper.event.block.BlockDestroyEvent'.(ü‚äå8Ø•Äø.
 G
-java:S5411!"*Use the primitive boolean expression here.(ê€œ8ÃÏ.
-W
-java:S1874"5Remove this use of "getItemInHand"; it is deprecated.(Šü˜úÿÿÿÿ8ªĞÊÑ.
-X
-java:S1128";Remove this unused import 'org.bukkit.event.EventPriority'.(‚–Ç8ãä¶ôŸ.
+java:S5411"*Use the primitive boolean expression here.(ê€œ8ÔöíŒ®.

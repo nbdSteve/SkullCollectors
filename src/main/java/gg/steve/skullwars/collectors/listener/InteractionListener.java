@@ -1,6 +1,5 @@
 package gg.steve.skullwars.collectors.listener;
 
-import com.destroystokyo.paper.event.block.BlockDestroyEvent;
 import com.massivecraft.factions.Board;
 import com.massivecraft.factions.FLocation;
 import com.massivecraft.factions.FPlayer;
@@ -10,17 +9,13 @@ import gg.steve.skullwars.collectors.core.CollectorManager;
 import gg.steve.skullwars.collectors.managers.Files;
 import gg.steve.skullwars.collectors.message.MessageType;
 import gg.steve.skullwars.collectors.nbt.NBTItem;
-import gg.steve.skullwars.collectors.utils.LogUtil;
 import org.bukkit.Chunk;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.*;
-import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
-import org.bukkit.event.entity.ExplosionPrimeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 public class InteractionListener implements Listener {
@@ -79,7 +74,10 @@ public class InteractionListener implements Listener {
         Collector collector = CollectorManager.getCollector(chunk);
         if (!event.getClickedBlock().equals(collector.getCollectorLocation().getBlock())) return;
         FPlayer fPlayer = FPlayers.getInstance().getByPlayer(event.getPlayer());
-        if (!fPlayer.hasFaction() || !fPlayer.getFaction().equals(collector.getManager().getFaction())) return;
+        if (!fPlayer.hasFaction() || !fPlayer.getFaction().equals(collector.getManager().getFaction())) {
+            MessageType.NO_FACTION.message(fPlayer.getPlayer());
+            return;
+        }
         event.setCancelled(true);
         collector.getManager().openFCollectorGui(event.getPlayer());
     }

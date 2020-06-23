@@ -5,6 +5,7 @@ import com.massivecraft.factions.Faction;
 import com.massivecraft.factions.Factions;
 import com.massivecraft.factions.integration.Econ;
 import gg.steve.skullwars.collectors.SkullCollectors;
+import gg.steve.skullwars.collectors.drops.DropType;
 import gg.steve.skullwars.collectors.gui.FCollectorGui;
 import gg.steve.skullwars.collectors.integration.ShopGUIPlusIntegration;
 import gg.steve.skullwars.collectors.managers.Files;
