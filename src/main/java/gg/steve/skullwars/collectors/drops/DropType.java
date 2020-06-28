@@ -58,4 +58,8 @@ public enum DropType {
             }
         }
     }
+
+    public static int getMaxTNT() {
+        return Files.CONFIG.get().getInt("tnt.capacity");
+    }
 }

@@ -22,8 +22,8 @@ public class GuiItemUtil {
         builder.addLore(section.getStringList(entry + ".lore"),
                 SkullCollectors.getNumberFormat().format(collectorManager.getDropAmount(DropType.MOB)),
                 SkullCollectors.getNumberFormat().format(collectorManager.getDropAmount(DropType.CROP)),
-                SkullCollectors.getNumberFormat().format(collectorManager.getFaction().getTnt()),
-                SkullCollectors.getNumberFormat().format(collectorManager.getFaction().getTntBankLimit()),
+                SkullCollectors.getNumberFormat().format(collectorManager.getTNT()),
+                SkullCollectors.getNumberFormat().format(DropType.getMaxTNT()),
                 SkullCollectors.getNumberFormat().format(collectorManager.getCollectorCount()),
                 SkullCollectors.getNumberFormat().format(collectorManager.getCollectedItems()),
                 SkullCollectors.getNumberFormat().format(collectorManager.getLifetime()));

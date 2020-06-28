@@ -21,6 +21,7 @@ public enum MessageType {
     TNT_DEPOSIT("tnt-deposit", "{deposit}"),
     COLLECTOR_ACTIVE("collector-active"),
     COLLECTOR_PLACE("collector-place"),
+    NOT_PLAYER_COLLECTOR("not-player-collector"),
     COLLECTOR_BREAK("collector-break");
 
     private String path;

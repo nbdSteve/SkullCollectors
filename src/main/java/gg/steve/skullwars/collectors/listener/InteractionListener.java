@@ -72,10 +72,12 @@ public class InteractionListener implements Listener {
         Chunk chunk = event.getClickedBlock().getChunk();
         if (!CollectorManager.isCollectorActive(chunk)) return;
         Collector collector = CollectorManager.getCollector(chunk);
-        if (!event.getClickedBlock().equals(collector.getCollectorLocation().getBlock())) return;
+        if (!(event.getClickedBlock().getX() == collector.getCollectorLocation().getBlockX()
+                && event.getClickedBlock().getY() == collector.getCollectorLocation().getBlockY()
+                && event.getClickedBlock().getZ() == collector.getCollectorLocation().getBlockZ())) return;
         FPlayer fPlayer = FPlayers.getInstance().getByPlayer(event.getPlayer());
         if (!fPlayer.hasFaction() || !fPlayer.getFaction().equals(collector.getManager().getFaction())) {
-            MessageType.NO_FACTION.message(fPlayer.getPlayer());
+            MessageType.NOT_PLAYER_COLLECTOR.message(fPlayer.getPlayer());
             return;
         }
         event.setCancelled(true);

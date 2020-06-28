@@ -16,13 +16,12 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.*;
 
 public class FactionCollectorsManager {
     private String factionId;
-    private int lifetime;
+    private int lifetime, tnt;
     private Map<UUID, Collector> collectors;
     private Map<Material, Integer> collectorContents;
     private FCollectorGui fCollectorGui;
@@ -32,10 +31,12 @@ public class FactionCollectorsManager {
         if (Files.DATA.get().getConfigurationSection(this.factionId) == null) {
             Files.DATA.get().createSection(this.factionId);
             Files.DATA.get().getConfigurationSection(this.factionId).set("lifetime", 0);
+            Files.DATA.get().getConfigurationSection(this.factionId).set("tnt", 0);
             Files.DATA.get().createSection(this.factionId + ".contents");
             Files.DATA.save();
         }
         this.lifetime = Files.DATA.get().getConfigurationSection(this.factionId).getInt("lifetime");
+        this.tnt = Files.DATA.get().getConfigurationSection(this.factionId).getInt("tnt");
         loadCollectorContents(Files.DATA.get().getConfigurationSection(this.factionId + ".contents"));
         loadCollectors(Files.DATA.get().getConfigurationSection(this.factionId));
     }
@@ -50,7 +51,7 @@ public class FactionCollectorsManager {
     public void loadCollectors(ConfigurationSection section) {
         this.collectors = new HashMap<>();
         for (String entry : section.getKeys(false)) {
-            if (entry.equalsIgnoreCase("contents") || entry.equalsIgnoreCase("lifetime")) continue;
+            if (entry.equalsIgnoreCase("contents") || entry.equalsIgnoreCase("lifetime") || entry.equalsIgnoreCase("tnt")) continue;
             int x = section.getInt(entry + ".x");
             int y = section.getInt(entry + ".y");
             int z = section.getInt(entry + ".z");
@@ -64,7 +65,8 @@ public class FactionCollectorsManager {
         ConfigurationSection section = Files.DATA.get().getConfigurationSection(this.factionId);
         section.set("contents", null);
         section.createSection("contents");
-        section.set("lifetime", lifetime);
+        section.set("lifetime", this.lifetime);
+        section.set("tnt", this.tnt);
         for (Material material : this.collectorContents.keySet()) {
             section.set("contents." + material.name(), this.collectorContents.get(material));
         }
@@ -80,6 +82,7 @@ public class FactionCollectorsManager {
         if (Files.DATA.get().getConfigurationSection(this.factionId) == null) {
             Files.DATA.get().createSection(this.factionId);
             Files.DATA.get().getConfigurationSection(this.factionId).set("lifetime", 0);
+            Files.DATA.get().getConfigurationSection(this.factionId).set("tnt", 0);
             Files.DATA.get().createSection(this.factionId + ".contents");
             Files.DATA.save();
         }
@@ -104,6 +107,14 @@ public class FactionCollectorsManager {
         collectorContents.put(material, amount);
     }
 
+    public void addTNT(int amount) {
+        this.tnt += amount;
+    }
+
+    public void takeTNT(int amount) {
+        this.tnt -= amount;
+    }
+
     public String[] sellDrops(DropType type) {
         double deposit = 0;
         int itemsSold = 0;
@@ -124,19 +135,27 @@ public class FactionCollectorsManager {
     }
 
     public double depositTnt(Player player) {
-        int deposit = 0;
-        List<ItemStack> depositedStacks = new ArrayList<>();
-        for (ItemStack item : player.getInventory()) {
-            if (item != null && item.getType().equals(Material.TNT)) {
-                deposit += item.getAmount();
-                depositedStacks.add(item);
-            }
-        }
-        for (ItemStack item : depositedStacks) {
-            player.getInventory().remove(item);
-        }
-        FPlayers.getInstance().getByPlayer(player).getFaction().addTnt(deposit);
-        return deposit;
+//        int deposit = 0;
+//        List<ItemStack> depositedStacks = new ArrayList<>();
+//        for (ItemStack item : player.getInventory()) {
+//            if (item != null && item.getType().equals(Material.TNT)) {
+//                deposit += item.getAmount();
+//                depositedStacks.add(item);
+//            }
+//        }
+//        for (ItemStack item : depositedStacks) {
+//            player.getInventory().remove(item);
+//        }
+//        FPlayers.getInstance().getByPlayer(player).getFaction().addTnt(deposit);
+//        return deposit;
+        int current = this.tnt;
+        FPlayers.getInstance().getByPlayer(player).getFaction().addTnt(this.tnt);
+        this.tnt = 0;
+        return current;
+    }
+
+    public int getTNT() {
+        return this.tnt;
     }
 
     public int getDropAmount(DropType type) {

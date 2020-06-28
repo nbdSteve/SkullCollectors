@@ -1,8 +1,6 @@
 allowed-worlds:
   - world
 
-do-vanilla-drops: true
-
 enabled-spawn-types:
   - blaze
 
@@ -10,13 +8,16 @@ mob-drops:
   capacity: 100
   items:
     - sulphur
-    - bones
+    - bone
     - ender_pearl
 
 crop-drops:
   capacity: 100
   items:
     - sugar_cane
+
+tnt:
+  capacity: 100
 
 loot-per-minute:
   creeper:
@@ -26,10 +27,12 @@ loot-per-minute:
     money: 0.0
   enderman:
     items:
-    money: 20.0
+      - 'enderpearl:0-16'
+    money: 0.0
   skeleton:
     items:
-    money: 10.0
+      - 'bone:0-10'
+    money: 0.0
 
 collector:
   name: '&c&lSKULL COLLECTOR'

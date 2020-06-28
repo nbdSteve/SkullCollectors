@@ -30,14 +30,18 @@ public class CollectionListener implements Listener {
         Collector collector = CollectorManager.getCollector(event.getBlock().getChunk());
         for (ItemStack item : event.getBlock().getDrops()) {
             if (!DropType.isCollectable(item.getType())) continue;
-            isConnectedBlockAbove(event.getBlock(), event.getBlock().getType(), collector);
+            if (event.getBlock().getType().toString().equalsIgnoreCase("SUGAR_CANE_BLOCK")
+                    || event.getBlock().getType().toString().equalsIgnoreCase("SUGAR_CANE")
+                    || event.getBlock().getType().toString().equalsIgnoreCase("CACTUS")) {
+                isConnectedBlockAbove(event.getBlock(), event.getBlock().getType(), collector);
+            }
             collector.cropBreak(event.getBlock());
         }
     }
 
     public boolean isConnectedBlockAbove(Block block, Material material, Collector collector) {
         Block above = block.getRelative(BlockFace.UP);
-        if (above != null && above.getType().equals(material)) {
+        if (above.getType().equals(material)) {
             isConnectedBlockAbove(above, material, collector);
             collector.cropBreak(above);
         } else {

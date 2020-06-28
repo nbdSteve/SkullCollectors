@@ -46,7 +46,13 @@ public class Collector implements CollectorEvents {
 
     public void creatureDeath(List<ItemStack> drops) {
         for (ItemStack item : drops) {
-            if (DropType.isMobDrop(item.getType()) && this.manager.getDropAmount(DropType.MOB) + item.getAmount() < DropType.getCapacity(DropType.MOB)) {
+            if (item.getType() == Material.TNT && this.manager.getTNT() < DropType.getMaxTNT()) {
+                if (this.manager.getTNT() + item.getAmount() > DropType.getMaxTNT()) {
+                    this.manager.addTNT(DropType.getMaxTNT() - this.manager.getTNT());
+                } else {
+                    this.manager.addTNT(item.getAmount());
+                }
+            } else if (DropType.isMobDrop(item.getType()) && this.manager.getDropAmount(DropType.MOB) + item.getAmount() < DropType.getCapacity(DropType.MOB)) {
                 this.manager.addDrop(item.getType(), item.getAmount());
             }
         }

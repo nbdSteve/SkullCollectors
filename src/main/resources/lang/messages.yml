@@ -33,3 +33,6 @@ give-piece-giver:
 
 give-piece-receiver:
   - '&5&lCollectoers &f>> &7You have received &e{amount}&7x collector(s).'
+
+not-player-collector:
+  - '&5&lCollectors &4(&c&lERROR&4) &f>> &7That collector does not belong to your faction.'
