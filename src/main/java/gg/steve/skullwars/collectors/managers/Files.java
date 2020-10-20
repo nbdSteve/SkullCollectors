@@ -43,8 +43,4 @@ public enum Files {
     public static boolean doSpawn(EntityType type) {
         return CONFIG.get().getStringList("enabled-spawn-types").contains(type.toString().toLowerCase());
     }
-
-    public static boolean doVanillaDrops() {
-        return CONFIG.get().getBoolean("do-vanilla-drops");
-    }
 }

@@ -51,10 +51,16 @@ public class CollectorManager implements Listener {
     }
 
     public static boolean isCollectorActive(Chunk chunk) {
+        for (Chunk chunk1 : activeCollectors.keySet()) {
+            if (chunk.getX() == chunk1.getX() && chunk.getZ() == chunk1.getZ()) return true;
+        }
         return activeCollectors.containsKey(chunk);
     }
 
     public static Collector getCollector(Chunk chunk) {
+        for (Chunk chunk1 : activeCollectors.keySet()) {
+            if (chunk.getX() == chunk1.getX() && chunk.getZ() == chunk1.getZ()) return activeCollectors.get(chunk1);
+        }
         return activeCollectors.get(chunk);
     }
 

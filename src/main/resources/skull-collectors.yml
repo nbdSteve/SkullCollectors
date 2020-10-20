@@ -1,6 +1,8 @@
 allowed-worlds:
   - world
 
+outpost-multiplier: 1.15 # 15% price increase
+
 enabled-spawn-types:
   - blaze
 
@@ -27,7 +29,7 @@ loot-per-minute:
     money: 0.0
   enderman:
     items:
-      - 'enderpearl:0-16'
+      - 'ender_pearl:0-16'
     money: 0.0
   skeleton:
     items:
@@ -36,16 +38,16 @@ loot-per-minute:
 
 collector:
   name: '&c&lSKULL COLLECTOR'
-  material: ender_portal_frame
+  material: 'beacon'
   data: 0
   lore:
     - ''
     - '&7&oPlace this in a chunk to receive loot.'
     - ''
   enchantments:
-    - lure:1
+    - 'lure:1'
   item-flags:
-    - hide_enchants
+    - 'hide_enchants'
 
 gui:
   name: "&5&l{faction}'s Collectors"

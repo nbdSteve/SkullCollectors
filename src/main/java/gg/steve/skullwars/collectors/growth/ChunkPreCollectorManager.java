@@ -11,6 +11,7 @@ import gg.steve.skullwars.collectors.core.CollectorManager;
 import gg.steve.skullwars.collectors.drops.DropType;
 import gg.steve.skullwars.collectors.drops.EntityDrops;
 import gg.steve.skullwars.collectors.managers.Files;
+import gg.steve.skullwars.collectors.utils.LogUtil;
 import net.techcable.tacospigot.event.entity.SpawnerPreSpawnEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -91,6 +92,7 @@ public class ChunkPreCollectorManager implements Listener {
             Collector collector = CollectorManager.getCollector(event.getLocation().getChunk());
             collector.creatureDeath(EntityDrops.getDrops(event.getSpawnedType()));
             Econ.deposit(faction.getAccountId(), EntityDrops.getMoney(event.getSpawnedType()));
+            return;
         }
     }
 }

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="SkullOutpost">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../test-server/skull/plugins/SkullOutpost.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

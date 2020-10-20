@@ -10,6 +10,7 @@ import gg.steve.skullwars.collectors.gui.FCollectorGui;
 import gg.steve.skullwars.collectors.integration.ShopGUIPlusIntegration;
 import gg.steve.skullwars.collectors.managers.Files;
 import gg.steve.skullwars.collectors.utils.LogUtil;
+import kr.xguys.outpost.OutpostPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -51,7 +52,8 @@ public class FactionCollectorsManager {
     public void loadCollectors(ConfigurationSection section) {
         this.collectors = new HashMap<>();
         for (String entry : section.getKeys(false)) {
-            if (entry.equalsIgnoreCase("contents") || entry.equalsIgnoreCase("lifetime") || entry.equalsIgnoreCase("tnt")) continue;
+            if (entry.equalsIgnoreCase("contents") || entry.equalsIgnoreCase("lifetime") || entry.equalsIgnoreCase("tnt"))
+                continue;
             int x = section.getInt(entry + ".x");
             int y = section.getInt(entry + ".y");
             int z = section.getInt(entry + ".z");
@@ -63,6 +65,7 @@ public class FactionCollectorsManager {
 
     public void saveCollectorData() {
         ConfigurationSection section = Files.DATA.get().getConfigurationSection(this.factionId);
+        if (section == null) return;
         section.set("contents", null);
         section.createSection("contents");
         section.set("lifetime", this.lifetime);
@@ -108,6 +111,7 @@ public class FactionCollectorsManager {
     }
 
     public void addTNT(int amount) {
+        this.lifetime += amount;
         this.tnt += amount;
     }
 
@@ -116,12 +120,15 @@ public class FactionCollectorsManager {
     }
 
     public String[] sellDrops(DropType type) {
-        double deposit = 0;
+        double deposit = 0, multiplier = 1;
         int itemsSold = 0;
+        if (OutpostPlugin.getInstance().getCapturedFaction().getId().equalsIgnoreCase(this.factionId)) {
+            multiplier = Files.CONFIG.get().getDouble("outpost-multiplier");
+        }
         List<Material> soldItems = new ArrayList<>();
         for (Material material : collectorContents.keySet()) {
             if (DropType.isDropType(type, material)) {
-                double price = ShopGUIPlusIntegration.getItemPrice(material) * this.collectorContents.get(material);
+                double price = ShopGUIPlusIntegration.getItemPrice(material) * this.collectorContents.get(material) * multiplier;
                 deposit += price;
                 itemsSold += this.collectorContents.get(material);
                 Econ.deposit(this.getFaction().getAccountId(), deposit);
